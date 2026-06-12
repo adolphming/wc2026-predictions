@@ -199,68 +199,6 @@ const 组 = 'ABCDEFGHIJKL';
 const 阶 = n=>n<=1?1:n*阶(n-1);
 const 泊 = (l,k)=>Math.exp(-l)*Math.pow(l,k)/阶(k);
 
-// 计算最可能的整数总进球
-function 最可能总进球(lambda, mu) {
-  let maxP = 0, best = 0;
-  for (let t = 0; t <= 12; t++) {
-    let p = 0;
-    for (let hg = 0; hg <= t; hg++) {
-      const ag = t - hg;
-      if (ag >= 0) p += 泊(lambda, hg) * 泊(mu, ag);
-    }
-    if (p > maxP) { maxP = p; best = t; }
-  }
-  return best;
-}
-
-function 预测(主,客){
-  const ht=T[主],at=T[客];
-  if(!ht||!at)return{h:33,d:34,a:33,sc:'1-1',l:1.2,m:1.1,tg:2.3,tg_int:2};
-  let l=ht.att*at.def*0.92; let m=at.att*ht.def*0.92;
-  l*=ht.st*ht.cup*ht.mk; m*=at.st*at.cup*at.mk;
-  if(东.includes(主)){l*=1.28;m*=0.88}
-  if(东.includes(客)){m*=1.22;l*=0.90}
-  const seed=(主.charCodeAt(0)+客.charCodeAt(0)+主.length+客.length)%7;
-  const jitter=1+(seed-3)*0.04; l*=jitter; m*=(2-jitter);
-  l=Math.min(Math.max(l,0.3),5.0); m=Math.min(Math.max(m,0.2),4.0);
-  let hW=0,dr=0,aW=0,mp=0,bs='1-1';
-  for(let hg=0;hg<=7;hg++)for(let ag=0;ag<=7;ag++){
-    const p=泊(l,hg)*泊(m,ag);
-    if(hg>ag)hW+=p;else if(hg===ag)dr+=p;else aW+=p;
-    if(p>mp){mp=p;bs=hg+'-'+ag;}
-  }
-  const tot=hW+dr+aW;
-  const tg_int = 最可能总进球(l, m);
-  return{
-    h:Math.round(hW/tot*1000)/10,d:Math.round(dr/tot*1000)/10,a:Math.round(aW/tot*1000)/10,
-    sc:bs,l:Math.round(l*10)/10,m:Math.round(m*10)/10,tg:Math.round((l+m)*10)/10,
-    tg_int:tg_int
-  };
-}
-
-function 积分(g){
-  const ts={};g.t.forEach(n=>{ts[n]={n,pt:0,gf:0,ga:0,gd:0,w:0,d:0,l:0,p:0};});
-  g.m.forEach(m=>{
-    if(!m.s)return;const[hs,as]=m.s.split('-').map(Number);
-    const h=ts[m.h],a=ts[m.a];if(!h||!a)return;
-    h.p++;a.p++;h.gf+=hs;h.ga+=as;h.gd=h.gf-h.ga;a.gf+=as;a.ga+=hs;a.gd=a.gf-a.ga;
-    if(hs>as){h.pt+=3;h.w++;a.l++}else if(hs===as){h.pt+=1;a.pt+=1;h.d++;a.d++}else{a.pt+=3;a.w++;ht.l++}
-  });
-  return Object.values(ts).sort((a,b)=>b.pt-a.pt||b.gd-a.gd);
-}
-
-function 全赛(){const a=[];组.split('').forEach(l=>{G[l].m.forEach(m=>{a.push({...m,g:l});});});return a.sort((a,b)=>a.d.localeCompare(b.d)||a.t.localeCompare(b.t));}
-
-const 周 = ['日','一','二','三','四','五','六'];
-function r(){r概();r赛();r预();r注();r淘();}
-function r概(){
-  let t=0,c=0,tg=0,hw=0;const td=new Date().toISOString().slice(0,10);
-  组.split('').forEach(l=>{G[l].m.forEach(m=>{t++;if(m.s){c++;const[hs,as]=m.s.split('-').map(Number);tg+=hs+as;if(hs>as)hw++}})});
-  const tc=组.split('').reduce((s,l)=>s+G[l].m.filter(m=>m.d===td).length,0);
-  document.getElementById('sd').innerHTML=`<div class="sc"><div class="v">${t}</div><div class="l">总场次</div></div><div class="sc"><div class="v">${c}</div><div class="l">已完赛</div></div><div class="sc"><div class="v">${tc}</div><div class="l">今日场次</div></div><div class="sc"><div class="v">${c?(tg/c).toFixed(1):'0.0'}</div><div class="l">场均进球</div></div><div class="sc"><div class="v">${c?Math.round(hw/c*100)+'%':'0%'}</div><div class="l">主队胜率</div></div>`;
-}
-
-// ===== 渲染各栏目 =====
 function r赛(){
   const tb=document.getElementById('gdt'),c=document.getElementById('gc');tb.innerHTML='';c.innerHTML='';
   const days=[...new Set(组.split('').flatMap(l=>G[l].m.map(m=>m.d)))].sort();
