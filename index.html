@@ -205,7 +205,7 @@ const 泊 = (l,k)=>Math.exp(-l)*Math.pow(l,k)/阶(k);
 function 预测(主,客){
   const ht=T[主],at=T[客];
   if(!ht||!at)return{
-    h:33,d:34,a:33,sc:'1-1',scs:['1-1','0-0','2-2'],l:1.2,m:1.1,tg:2.3,tg_int:2,
+    h:33,d:34,a:33,sc:'1-1',l:1.2,m:1.1,tg:2.3,tg_int:2,
     h_h:33,h_d:34,h_a:33,h_sc:'0-0',btts:50,cs_h:40,cs_a:40,
     dc_1x:67,dc_12:66,dc_x2:67
   };
@@ -214,21 +214,17 @@ function 预测(主,客){
   if(东.includes(主)){l*=1.20;m*=0.90}
   if(东.includes(客)){m*=1.15;l*=0.92}
   const seed=(主.charCodeAt(0)+客.charCodeAt(0)+主.length+客.length)%7;
-  const jit=1+(seed-3)*0.04;l*=jit;m*=(2-jit);
+  const jit=1+(seed-3)*0.015;l*=jit;m*=(2.02-jit);
   l=Math.min(Math.max(l,0.3),5.0);m=Math.min(Math.max(m,0.2),4.0);
   const hl=Math.max(l*0.42,0.15),hm=Math.max(m*0.42,0.10);
   let hW=0,dr=0,aW=0,mp=0,bs='1-1',bttsP=0,csH=0,csA=0;
-  let allSc=[];
   for(let hg=0;hg<=7;hg++)for(let ag=0;ag<=7;ag++){
     const p=泊(l,hg)*泊(m,ag);
     if(hg>ag)hW+=p;else if(hg===ag)dr+=p;else aW+=p;
     if(p>mp){mp=p;bs=hg+'-'+ag;}
-    allSc.push({s:hg+'-'+ag,p:p});
     if(hg>0&&ag>0)bttsP+=p;
     if(ag===0)csH+=p;if(hg===0)csA+=p;
   }
-  allSc.sort((a,b)=>b.p-a.p);
-  const topSc=allSc.slice(0,3).map(t=>t.s);
   const tot=hW+dr+aW;
   let hhW=0,hdr=0,haW=0,hmp=0,hbs='0-0';
   for(let hg=0;hg<=4;hg++)for(let ag=0;ag<=4;ag++){
@@ -240,7 +236,7 @@ function 预测(主,客){
   const tgInt=parseInt(bs.split("-")[0])+parseInt(bs.split("-")[1]);
   return{
     h:Math.round(hW/tot*1000)/10,d:Math.round(dr/tot*1000)/10,a:Math.round(aW/tot*1000)/10,
-    sc:bs,scs:topSc,l:Math.round(l*10)/10,m:Math.round(m*10)/10,tg:Math.round((l+m)*10)/10,tg_int:tgInt,
+    sc:bs,l:Math.round(l*10)/10,m:Math.round(m*10)/10,tg:Math.round((l+m)*10)/10,tg_int:tgInt,
     h_h:Math.round(hhW/htot*1000)/10,h_d:Math.round(hdr/htot*1000)/10,h_a:Math.round(haW/htot*1000)/10,h_sc:hbs,
     btts:Math.round(bttsP/tot*1000)/10,cs_h:Math.round(csH/tot*1000)/10,cs_a:Math.round(csA/tot*1000)/10,
     dc_1x:Math.round((hW+dr)/tot*1000)/10,dc_12:Math.round((hW+aW)/tot*1000)/10,dc_x2:Math.round((dr+aW)/tot*1000)/10
@@ -292,7 +288,7 @@ function r赛(){
         h+='</tbody></table>';}
       h+='<div style="margin-top:4px">';
       dm.forEach(m=>{const td=new Date().toISOString().slice(0,10),is=m.d===td,p=预测(m.h,m.a);
-        h+=`<div class="mc ${is?'mtd':''}"><div class="mt">${旗[m.h]||'🏳️'} ${m.h}</div><div class="ms">${m.s?`<span class="stxt fi">${m.s}</span>`:`<span class="stxt up">${p.scs[0]}</span>`}</div><div class="mt">${m.a} ${旗[m.a]||'🏳️'}</div><div class="mm">${is?'<span class="ld"></span>':''}<span class="mt2">${m.t}</span><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${m.v}</span><span style="font-size:10px;font-weight:600;color:var(--text3);padding:2px 6px;background:var(--bg3);border-radius:3px">${l}组</span>${m.s?'<span style="padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;background:var(--green-bg);color:var(--green)">已完赛</span>':`<span class="pt ${p.h>p.a?'hw':(p.a>p.h?'aw':'dr')}">预测${p.scs[0]}</span>`}</div></div>`;});
+        h+=`<div class="mc ${is?'mtd':''}"><div class="mt">${旗[m.h]||'🏳️'} ${m.h}</div><div class="ms">${m.s?`<span class="stxt fi">${m.s}</span>`:`<span class="stxt up">${p.sc}</span>`}</div><div class="mt">${m.a} ${旗[m.a]||'🏳️'}</div><div class="mm">${is?'<span class="ld"></span>':''}<span class="mt2">${m.t}</span><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${m.v}</span><span style="font-size:10px;font-weight:600;color:var(--text3);padding:2px 6px;background:var(--bg3);border-radius:3px">${l}组</span>${m.s?'<span style="padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;background:var(--green-bg);color:var(--green)">已完赛</span>':`<span class="pt ${p.h>p.a?'hw':(p.a>p.h?'aw':'dr')}">预测${p.sc}</span>`}</div></div>`;});
       h+='</div>';cd.innerHTML+=h;dv.appendChild(cd);
     });c.appendChild(dv);
   });
@@ -333,7 +329,7 @@ function r注(){
     
     html+=`<div class="bc"><h4>${旗[m.h]||''} ${m.h} vs ${m.a} ${旗[m.a]||''}</h4>
       <div style="font-size:12px;color:var(--text3)">${m.t} · ${m.v} · ${m.g}组</div>
-      <div class="bs">${p.scs[0]} ${p.scs[1]} ${p.scs[2]} · 总进球 ${tg_int}球</div>
+      <div class="bs">${p.sc} · 总进球 ${tg_int}球</div>
       <div class="tr">
         <div class="tb2"><div class="fl g" style="width:${p.h}%"></div><span style="font-size:9px;position:absolute;top:5px;left:4px;color:var(--text3)">${m.h}</span></div>
         <div class="tb2"><div class="fl y" style="width:${p.d}%"></div><span style="font-size:9px;position:absolute;top:5px;left:4px;color:var(--text3)">平</span></div>
@@ -364,7 +360,7 @@ function r预(){
       </div>
       <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-bottom:12px">
         <div style="text-align:right;font-size:14px;font-weight:500">${m.h}</div>
-        <div style="font-size:28px;font-weight:800;color:var(--gold);text-align:center">${p.scs[0]}</div><div style="font-size:12px;color:var(--text3);text-align:center">亦可能 ${p.scs[1]} ${p.scs[2]}</div>
+        <div style="font-size:28px;font-weight:800;color:var(--gold);text-align:center">${p.sc}</div>
         <div style="font-size:14px;font-weight:500">${m.a}</div>
       </div>
       <div style="margin-bottom:6px"><div style="display:flex;gap:6px;height:22px">
