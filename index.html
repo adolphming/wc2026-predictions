@@ -199,6 +199,15 @@ const 组 = 'ABCDEFGHIJKL';
 const 阶 = n=>n<=1?1:n*阶(n-1);
 const 泊 = (l,k)=>Math.exp(-l)*Math.pow(l,k)/阶(k);
 
+function r(){
+  r概();r赛();r预();r注();r淘();
+}
+function r概(){
+  let t=0,c=0,tg=0,hw=0;const td=new Date().toISOString().slice(0,10);
+  组.split('').forEach(l=>{G[l].m.forEach(m=>{t++;if(m.s){c++;const[hs,as]=m.s.split('-').map(Number);tg+=hs+as;if(hs>as)hw++}})});
+  const tc=组.split('').reduce((s,l)=>s+G[l].m.filter(m=>m.d===td).length,0);
+  document.getElementById('sd').innerHTML='<div class="sc"><div class="v">'+t+'</div><div class="l">总场次</div></div><div class="sc"><div class="v">'+c+'</div><div class="l">已完赛</div></div><div class="sc"><div class="v">'+tc+'</div><div class="l">今日场次</div></div><div class="sc"><div class="v">'+(c?(tg/c).toFixed(1):'0.0')+'</div><div class="l">场均进球</div></div><div class="sc"><div class="v">'+(c?Math.round(hw/c*100)+'%':'0%')+'</div><div class="l">主队胜率</div></div>';
+}
 function r赛(){
   const tb=document.getElementById('gdt'),c=document.getElementById('gc');tb.innerHTML='';c.innerHTML='';
   const days=[...new Set(组.split('').flatMap(l=>G[l].m.map(m=>m.d)))].sort();
