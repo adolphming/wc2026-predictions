@@ -238,6 +238,8 @@ function r注(){
     if(p.h>58)recs.push({t:`${m.h} 胜`,c:'sg'});else if(p.a>58)recs.push({t:`${m.a} 胜`,c:'sg'});
     else if(p.h>48)recs.push({t:`${m.h} 胜`,c:'md'});else if(p.a>48)recs.push({t:`${m.a} 胜`,c:'md'});
     if(p.d>32)recs.push({t:'平局',c:'md'});
+    // 半场推荐
+    if(p.h_h>48)recs.push({t:`半场${m.h}胜`,c:'md'});else if(p.h_d>40)recs.push({t:'半场平局',c:'md'});else if(p.h_a>48)recs.push({t:`半场${m.a}胜`,c:'md'});
     // 总进球整数 + 大/小推荐
     const tg_int = p.tg_int;
     const overUnder = p.tg > 2.3 ? '大2.5' : '小2.5';
@@ -264,7 +266,8 @@ function r注(){
       </div>
       <div class="rs">${recs.map(r=>`<span class="r ${r.c}">${r.t}</span>`).join('')}</div>
       <div class="ts"><span>⚔ ${m.h} 攻${ht.att.toFixed(1)}/防${ht.def.toFixed(1)}</span><span>⚔ ${m.a} 攻${at.att.toFixed(1)}/防${at.def.toFixed(1)}</span>${ht.star?`<span>⭐ ${ht.star}</span>`:''}${at.star?`<span>⭐ ${at.star}</span>`:''}</div>
-      <div class="rc">📊 分析: ${reason}</div>
+      <div class="ts"><span>🔄 双主不败 ${p.dc_1x}%</span><span>🔄 双客不败 ${p.dc_x2}%</span><span>⚔ 都进球 ${p.btts}%</span><span>🛡 ${m.h}零封 ${p.cs_h}%</span></div>
+      <div class="ts"><span>⏱ 半场 ${p.h_sc}</span><span>半主${p.h_h}%</span><span>半平${p.h_d}%</span><span>半客${p.h_a}%</span></div><div class="rc">📊 分析: ${reason}</div>
       <div class="bt">赔率: ${(抽*100/p.h).toFixed(2)} / ${(抽*100/p.d).toFixed(2)} / ${(抽*100/p.a).toFixed(2)}</div>
     </div>`;
     const idx=all.indexOf(m);const next=all[idx+1];
