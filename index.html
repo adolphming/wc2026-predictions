@@ -324,13 +324,23 @@ function r注(){
     const drP=Math.round(p.d),hW=Math.round(p.h),aW=Math.round(p.a);
     const isHost = 东.includes(m.h)||东.includes(m.a);
     const hostNote = isHost ? '(含东道主因子)' : '';
-            let reason;
-    if(hW>60)reason=`${m.h}胜率${hW}%远高于平局${drP}%，实力压制。推荐${m.h}胜 ${hostNote}`;
-    else if(aW>60)reason=`${m.a}胜率${aW}%远高于平局${drP}%，实力压制。推荐${m.a}胜`;
-    else if(drP>22)reason=`双方实力接近——${m.h}${hW}%/平${drP}%/${m.a}${aW}%。建议防平，预测${p.sc}`;
-    else if(hW>48)reason=`${m.h}稍占优(${hW}%)，平率${drP}%。推荐${m.h}胜，可防平`;
-    else if(aW>48)reason=`${m.a}稍占优(${aW}%)，平率${drP}%。推荐${m.a}胜，可防平`;
-    else reason=`势均力敌——${m.h}${hW}%/平${drP}%/${m.a}${aW}%。建议${hW>aW?m.h:m.a}不败`;html+=`<div class="bc"><h4>${旗[m.h]||''} ${m.h} vs ${m.a} ${旗[m.a]||''}</h4>
+                
+    const homeStar = ht.star ? ht.star.split(',')[0] : '';
+    const awayStar = at.star ? at.star.split(',')[0] : '';
+    const sd2 = (m.h.charCodeAt(0)+m.a.charCodeAt(0)) % 4;
+    let reason;
+    if(hW>62)reason=`${m.h}攻防全面压制${m.a}${homeStar?'，'+homeStar+'领衔的攻击线火力凶猛':''}，${m.a}很难抵挡。推荐${m.h}胜，预测${p.sc}`;
+    else if(aW>62)reason=`${m.a}实力明显强于${m.h}${awayStar?'，'+awayStar+'是取胜关键':''}。推荐${m.a}胜，预测${p.sc}`;
+    else if(hW>52&&drP<25)reason=`${m.h}${['整体实力更胜一筹','主场优势不可忽视','攻防两端更有威胁'][sd2]}，${m.a}客场想拿分不容易。推荐${m.h}胜`;
+    else if(aW>52&&drP<25)reason=`${m.a}${['账面实力占优','近期状态更好','进攻效率更高'][sd2]}，${m.h}主场难阻${m.a}。推荐${m.a}胜`;
+    else if(drP>22){
+      const drTxt=['两队实力旗鼓相当，谁赢都正常。','攻防数据不分伯仲，看临场发挥。','这场硬碰硬不好说，双方都有机会。','纸面实力五五开，主场是唯一变量。'];
+      const endTxt=['稳妥起见双选不败','建议防一手平局','任何结果都不意外'];
+      reason=drTxt[sd2]+' '+endTxt[(sd2+1)%3];
+    }
+    else if(hW>aW)reason=`${m.h}稍占上风，但${m.a}有爆冷能力。推荐${m.h}不败`;
+    else reason=`${m.a}稍占优势，不过${m.h}主场加持不容小觑。推荐${m.a}不败`;
+html+=`<div class="bc"><h4>${旗[m.h]||''} ${m.h} vs ${m.a} ${旗[m.a]||''}</h4>
       <div style="font-size:12px;color:var(--text3)">${m.t} · ${m.v} · ${m.g}组</div>
       <div class="bs">${p.sc} · 总进球 ${tg_int}球</div>
       <div class="tr">
