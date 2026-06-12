@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026世界杯预测 · 仅供参考</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0e17;--bg2:#111827;--bg3:#1a2332;--bg4:#243044;--border:#2a3a50;--text:#e8edf5;--text2:#94a3b8;--text3:#64748b;--green:#22c55e;--green-bg:rgba(34,197,94,0.12);--yellow:#eab308;--yellow-bg:rgba(234,179,8,0.12);--red:#ef4444;--red-bg:rgba(239,68,68,0.12);--blue:#3b82f6;--blue-bg:rgba(59,130,246,0.12);--orange:#f97316;--gold:#f59e0b}
+html{scroll-behavior:smooth}
+body{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh}
+nav{position:sticky;top:0;z-index:50;background:rgba(10,14,23,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 16px}
+.nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:24px;height:56px;overflow-x:auto}
+nav h1{font-size:15px;font-weight:700;white-space:nowrap;background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;white-space:nowrap;padding:8px 0;border-bottom:2px solid transparent;transition:all .15s;cursor:pointer}
+nav a:hover,nav a.active{color:var(--text);border-bottom-color:#3b82f6}
+.nav-date{margin-left:auto;font-size:12px;color:var(--text3);white-space:nowrap;background:var(--bg3);padding:4px 10px;border-radius:6px}
+.container{max-width:1400px;margin:0 auto;padding:20px 16px}
+.section-title{font-size:20px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.section-title span{background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.section-title small{font-size:13px;font-weight:400;color:var(--text3);-webkit-text-fill-color:var(--text3)}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.card-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.card-header h3{font-size:14px;font-weight:600}
+.card-body{padding:16px}
+.group-table{width:100%;border-collapse:collapse;font-size:13px}
+.group-table th{text-align:left;padding:8px 6px;font-size:11px;letter-spacing:.5px;color:var(--text3);font-weight:600;border-bottom:1px solid var(--border)}
+.group-table td{padding:8px 6px;border-bottom:1px solid rgba(42,58,80,0.4)}
+.group-table tr:last-child td{border-bottom:none}
+.group-table .pos{width:20px;text-align:center;font-weight:600;font-size:12px}
+.group-table .pos-1,.pos-2{color:var(--green)}
+.group-table .pos-3{color:var(--yellow)}
+.group-table .team-cell{font-weight:500;display:flex;align-items:center;gap:6px}
+.group-table .pts{font-weight:700;text-align:center}
+.group-table .pts-cell,.gd-cell{text-align:center}
+.group-table .host-badge{font-size:10px;color:var(--gold);margin-left:4px}
+.group-label{font-size:10px;font-weight:600;color:var(--text3);padding:2px 6px;background:var(--bg3);border-radius:3px}
+.match-card{padding:10px 14px;border-bottom:1px solid rgba(42,58,80,0.25);display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center;transition:background .2s}
+.match-card:last-child{border-bottom:none}
+.match-card:hover{background:var(--bg3)}
+.match-team{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500}
+.match-team:last-child{text-align:right;flex-direction:row-reverse}
+.match-score{text-align:center;font-weight:700;font-size:16px;font-family:'Inter',sans-serif;min-width:50px}
+.match-score .st{padding:2px 10px;border-radius:6px;background:var(--bg3);display:inline-block}
+.match-score .st.fi{background:var(--green-bg);color:var(--green)}
+.match-score .st.up{color:var(--text3);font-size:12px;font-weight:400}
+.match-meta{grid-column:1/-1;font-size:11px;color:var(--text3);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.match-time{white-space:nowrap;font-weight:500;color:var(--text2)}
+.match-venue{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pred-tag{font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600}
+.pred-tag.hw{background:var(--green-bg);color:var(--green)}
+.pred-tag.dr{background:var(--yellow-bg);color:var(--yellow)}
+.pred-tag.aw{background:var(--red-bg);color:var(--red)}
+.dashboard{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:16px}
+.stat-card{background:var(--bg3);border-radius:10px;padding:14px;text-align:center}
+.stat-card .val{font-size:26px;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:2px}
+.stat-card .lbl{font-size:11px;color:var(--text3)}
+.bet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+.bet-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px}
+.bet-card h4{font-size:14px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.bet-card .recs{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.recs .r{font-size:11px;padding:3px 8px;border-radius:4px;font-weight:600}
+.r.sg{background:var(--green-bg);color:var(--green)}
+.r.md{background:var(--blue-bg);color:var(--blue)}
+.r.lo{background:var(--orange-bg);color:var(--orange)}
+.bet-odds{font-size:11px;color:var(--text3);margin-top:6px}
+.bet-sc{font-size:15px;font-weight:700;color:var(--gold);margin:6px 0}
+.bet-prob{display:flex;gap:4px;margin-top:6px}
+.bet-prob-bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.bet-prob-bar .b{height:6px;border-radius:3px;width:100%}
+.b.h{background:var(--green)}.b.d{background:var(--yellow)}.b.a{background:var(--red)}
+.bet-prob-lbl{font-size:10px;color:var(--text3);text-align:center}
+.bracket-container{overflow-x:auto;padding:10px 0}
+.bracket{display:flex;gap:10px;min-width:750px}
+.bracket-round{display:flex;flex-direction:column;gap:3px;min-width:140px;flex:1}
+.bracket-round-label{font-size:10px;font-weight:600;color:var(--text3);text-align:center;padding:4px}
+.bracket-game{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:6px 8px;font-size:11px}
+.bracket-game .bt{display:flex;justify-content:space-between;align-items:center;padding:2px 0}
+.bracket-game .bt.lo{color:var(--text3)}
+.tab-bar{display:flex;gap:4px;background:var(--bg3);padding:4px;border-radius:8px;margin-bottom:12px;overflow-x:auto;flex-wrap:wrap}
+.tab-btn{padding:6px 14px;font-size:12px;font-weight:500;border-radius:6px;cursor:pointer;border:none;background:transparent;color:var(--text3);white-space:nowrap;transition:all .15s;font-family:inherit}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.act{background:var(--bg4);color:var(--text)}
+.tab-c{display:none}.tab-c.act{display:block}
+@media(max-width:768px){.dashboard{grid-template-columns:repeat(2,1fr)}.bracket{min-width:550px}.bracket-round{min-width:90px}.bet-grid{grid-template-columns:1fr}}
+.match-highlight{border-left:3px solid var(--gold)}
+.match-today{border-left:3px solid var(--green);background:var(--green-bg)}.match-today .match-team{font-weight:600}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--red);display:inline-block;margin-right:4px;animation:pulse 1.5s infinite}
+.wb{background:var(--orange-bg);border:1px solid var(--orange);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--orange);margin-bottom:16px;text-align:center}
+.daily-header{background:var(--bg3);padding:10px 14px;border-radius:8px;margin:8px 0;font-weight:600;font-size:14px;display:flex;align-items:center;gap:8px}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner">
+  <h1>⚽ 2026世界杯预测</h1>
+  <a class="act" onclick="st('groups')">赛程积分</a>
+  <a onclick="st('predictions')">预测分析</a>
+  <a onclick="st('bets')">每日下注</a>
+  <a onclick="st('bracket')">淘汰赛</a>
+  <div class="nav-date">📅 2026.6.12 北京</div>
+</div></nav>
+
+<div class="container">
+<div class="wb">⚠️ 仅供娱乐参考 · 基于FIFA排名+历史战绩+球星实力多维模型</div>
+<div class="dashboard" id="sd"></div>
+
+<div id="tab-groups" class="tab-c act">
+  <div class="tab-bar" id="gdt"></div>
+  <div id="gc"></div>
+</div>
+<div id="tab-predictions" class="tab-c">
+  <div class="section-title"><span>全部比赛预测</span><small>按时间排序 · 点击"查看详情"展开</small></div>
+  <div id="pc"></div>
+</div>
+<div id="tab-bets" class="tab-c">
+  <div class="section-title"><span>每日推荐</span><small>胜平负 + 比分 + 总进球</small></div>
+  <div id="bc"></div>
+</div>
+<div id="tab-bracket" class="tab-c">
+  <div class="section-title"><span>淘汰赛对阵</span><small>模拟晋级路径</small></div>
+  <div class="bracket-container"><div class="bracket" id="brc"></div></div>
+</div>
+</div>
+
+<script>
+// ===== 球队实力模型 - 基于FIFA排名+2022世界杯数据校准 =====
+// rk: 排名, att: 进攻/场均进球潜力, def: 防守/失球抵抗(越低越好)
+// st: 超级球星, cup: 大赛经验, mk: 市场热度
+const T = {
+  阿根廷:{rk:1,att:1.95,def:0.72,st:1.12,cup:1.15,mk:1.10},
+  法国:{rk:2,att:2.30,def:0.65,st:1.15,cup:1.12,mk:1.12},
+  巴西:{rk:3,att:2.10,def:0.70,st:1.10,cup:1.10,mk:1.10},
+  英格兰:{rk:4,att:1.85,def:0.68,st:1.08,cup:1.08,mk:1.08},
+  比利时:{rk:5,att:1.55,def:0.82,st:1.05,cup:1.04,mk:1.04},
+  葡萄牙:{rk:6,att:1.75,def:0.78,st:1.08,cup:1.06,mk:1.06},
+  荷兰:{rk:7,att:1.65,def:0.68,st:1.04,cup:1.06,mk:1.04},
+  西班牙:{rk:8,att:1.70,def:0.73,st:1.04,cup:1.04,mk:1.04},
+  克罗地亚:{rk:9,att:1.25,def:0.78,st:1.02,cup:1.12,mk:1.02},
+  德国:{rk:10,att:1.80,def:0.78,st:1.04,cup:1.08,mk:1.04},
+  乌拉圭:{rk:11,att:1.50,def:0.78,st:1.02,cup:1.06,mk:1.02},
+  摩洛哥:{rk:12,att:1.20,def:0.75,st:1.00,cup:1.10,mk:1.00},
+  瑞士:{rk:13,att:1.15,def:0.82,st:1.00,cup:1.04,mk:1.00},
+  美国:{rk:14,att:1.40,def:0.85,st:1.02,cup:1.02,mk:1.02},
+  哥伦比亚:{rk:15,att:1.40,def:0.86,st:1.02,cup:1.03,mk:1.02},
+  墨西哥:{rk:16,att:1.30,def:0.86,st:1.00,cup:1.04,mk:1.00},
+  日本:{rk:17,att:1.35,def:0.82,st:1.04,cup:1.06,mk:1.02},
+  塞内加尔:{rk:18,att:1.20,def:0.92,st:1.03,cup:1.04,mk:1.00},
+  厄瓜多尔:{rk:19,att:1.15,def:0.92,st:1.00,cup:1.02,mk:1.00},
+  瑞典:{rk:20,att:1.30,def:0.88,st:1.06,cup:1.00,mk:1.02},
+  伊朗:{rk:21,att:0.75,def:0.75,st:1.00,cup:1.03,mk:0.99},
+  突尼斯:{rk:22,att:0.75,def:0.83,st:1.00,cup:1.03,mk:0.99},
+  澳大利亚:{rk:23,att:0.95,def:0.92,st:1.00,cup:1.02,mk:1.00},
+  韩国:{rk:24,att:1.20,def:0.93,st:1.06,cup:1.03,mk:1.02},
+  埃及:{rk:25,att:1.10,def:0.93,st:1.08,cup:1.02,mk:1.02},
+  挪威:{rk:26,att:1.45,def:1.05,st:1.15,cup:1.00,mk:1.08},
+  土耳其:{rk:27,att:1.20,def:0.93,st:1.00,cup:1.00,mk:1.00},
+  苏格兰:{rk:28,att:1.05,def:0.92,st:1.00,cup:1.00,mk:1.00},
+  加纳:{rk:29,att:1.10,def:1.03,st:1.02,cup:1.02,mk:1.00},
+  科特迪瓦:{rk:30,att:1.10,def:0.93,st:1.02,cup:1.02,mk:1.00},
+  奥地利:{rk:31,att:1.10,def:0.93,st:1.00,cup:1.00,mk:1.00},
+  巴拉圭:{rk:32,att:0.95,def:0.93,st:1.00,cup:1.00,mk:1.00},
+  阿尔及利亚:{rk:33,att:1.05,def:0.98,st:1.02,cup:1.00,mk:1.00},
+  波黑:{rk:34,att:0.95,def:1.08,st:1.00,cup:1.00,mk:0.99},
+  沙特:{rk:35,att:0.75,def:1.02,st:1.00,cup:1.02,mk:0.98},
+  捷克:{rk:36,att:0.95,def:0.98,st:1.00,cup:1.00,mk:1.00},
+  加拿大:{rk:37,att:1.20,def:1.03,st:1.03,cup:1.00,mk:1.00},
+  卡塔尔:{rk:38,att:0.70,def:1.12,st:1.00,cup:1.00,mk:0.97},
+  巴拿马:{rk:39,att:0.65,def:1.22,st:1.00,cup:1.00,mk:0.96},
+  约旦:{rk:40,att:0.75,def:1.12,st:1.00,cup:1.00,mk:0.97},
+  刚果金:{rk:41,att:0.75,def:1.12,st:1.00,cup:1.00,mk:0.97},
+  南非:{rk:42,att:0.85,def:1.08,st:1.00,cup:1.00,mk:0.97},
+  伊拉克:{rk:43,att:0.75,def:1.08,st:1.00,cup:1.00,mk:0.97},
+  海地:{rk:44,att:0.55,def:1.28,st:1.00,cup:0.98,mk:0.95},
+  乌兹别克斯坦:{rk:45,att:0.80,def:1.08,st:1.00,cup:0.98,mk:0.97},
+  新西兰:{rk:46,att:0.65,def:1.08,st:1.00,cup:0.98,mk:0.97},
+  佛得角:{rk:47,att:0.65,def:1.08,st:1.00,cup:0.98,mk:0.96},
+  库拉索:{rk:48,att:0.55,def:1.28,st:1.00,cup:0.98,mk:0.95}
+};
+const 旗 = {
+  墨西哥:'🇲🇽',韩国:'🇰🇷',捷克:'🇨🇿',南非:'🇿🇦',加拿大:'🇨🇦',波黑:'🇧🇦',卡塔尔:'🇶🇦',瑞士:'🇨🇭',
+  巴西:'🇧🇷',摩洛哥:'🇲🇦',海地:'🇭🇹',苏格兰:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',美国:'🇺🇸',巴拉圭:'🇵🇾',澳大利亚:'🇦🇺',土耳其:'🇹🇷',
+  德国:'🇩🇪',库拉索:'🇨🇼',科特迪瓦:'🇨🇮',厄瓜多尔:'🇪🇨',荷兰:'🇳🇱',日本:'🇯🇵',瑞典:'🇸🇪',突尼斯:'🇹🇳',
+  比利时:'🇧🇪',埃及:'🇪🇬',伊朗:'🇮🇷',新西兰:'🇳🇿',西班牙:'🇪🇸',佛得角:'🇨🇻',沙特:'🇸🇦',乌拉圭:'🇺🇾',
+  法国:'🇫🇷',塞内加尔:'🇸🇳',伊拉克:'🇮🇶',挪威:'🇳🇴',阿根廷:'🇦🇷',阿尔及利亚:'🇩🇿',奥地利:'🇦🇹',约旦:'🇯🇴',
+  葡萄牙:'🇵🇹',刚果金:'🇨🇩',乌兹别克斯坦:'🇺🇿',哥伦比亚:'🇨🇴',英格兰:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',克罗地亚:'🇭🇷',加纳:'🇬🇭',巴拿马:'🇵🇦'
+};
+const 东 = ['墨西哥','加拿大','美国'];
+
+// ===== 小组数据 =====
+const G = {
+  A:{t:['墨西哥','韩国','捷克','南非'],m:[{h:'墨西哥',a:'南非',s:'2-0',d:'2026-06-12',t:'03:00',v:'阿兹特克, 墨西哥城'},{h:'韩国',a:'捷克',s:'2-1',d:'2026-06-12',t:'10:00',v:'阿克伦, 萨波潘'},{h:'捷克',a:'南非',d:'2026-06-19',t:'00:00',v:'梅赛德斯奔驰, 亚特兰大'},{h:'墨西哥',a:'韩国',d:'2026-06-19',t:'09:00',v:'阿克伦, 萨波潘'},{h:'捷克',a:'墨西哥',d:'2026-06-25',t:'09:00',v:'阿兹特克, 墨西哥城'},{h:'南非',a:'韩国',d:'2026-06-25',t:'09:00',v:'BBVA, 瓜达卢佩'}]},
+  B:{t:['加拿大','波黑','卡塔尔','瑞士'],m:[{h:'加拿大',a:'波黑',d:'2026-06-13',t:'03:00',v:'BMO球场, 多伦多'},{h:'卡塔尔',a:'瑞士',d:'2026-06-14',t:'03:00',v:'李维斯, 圣克拉拉'},{h:'瑞士',a:'波黑',d:'2026-06-19',t:'03:00',v:'SoFi, 英格尔伍德'},{h:'加拿大',a:'卡塔尔',d:'2026-06-19',t:'06:00',v:'BC Place, 温哥华'},{h:'瑞士',a:'加拿大',d:'2026-06-25',t:'03:00',v:'BC Place, 温哥华'},{h:'波黑',a:'卡塔尔',d:'2026-06-25',t:'03:00',v:'流明, 西雅图'}]},
+  C:{t:['巴西','摩洛哥','海地','苏格兰'],m:[{h:'巴西',a:'摩洛哥',d:'2026-06-14',t:'06:00',v:'大都会人寿, 东卢瑟福'},{h:'海地',a:'苏格兰',d:'2026-06-14',t:'09:00',v:'吉列, 福克斯堡'},{h:'苏格兰',a:'摩洛哥',d:'2026-06-20',t:'06:00',v:'吉列, 福克斯堡'},{h:'巴西',a:'海地',d:'2026-06-20',t:'08:30',v:'林肯金融, 费城'},{h:'苏格兰',a:'巴西',d:'2026-06-25',t:'06:00',v:'硬石, 迈阿密'},{h:'摩洛哥',a:'海地',d:'2026-06-25',t:'06:00',v:'梅赛德斯奔驰, 亚特兰大'}]},
+  D:{t:['美国','巴拉圭','澳大利亚','土耳其'],m:[{h:'美国',a:'巴拉圭',d:'2026-06-13',t:'09:00',v:'SoFi, 英格尔伍德'},{h:'澳大利亚',a:'土耳其',d:'2026-06-14',t:'12:00',v:'BC Place, 温哥华'},{h:'美国',a:'澳大利亚',d:'2026-06-20',t:'03:00',v:'流明, 西雅图'},{h:'土耳其',a:'巴拉圭',d:'2026-06-20',t:'11:00',v:'李维斯, 圣克拉拉'},{h:'土耳其',a:'美国',d:'2026-06-26',t:'10:00',v:'SoFi, 英格尔伍德'},{h:'巴拉圭',a:'澳大利亚',d:'2026-06-26',t:'10:00',v:'李维斯, 圣克拉拉'}]},
+  E:{t:['德国','库拉索','科特迪瓦','厄瓜多尔'],m:[{h:'德国',a:'库拉索',d:'2026-06-15',t:'01:00',v:'NRG, 休斯顿'},{h:'科特迪瓦',a:'厄瓜多尔',d:'2026-06-15',t:'07:00',v:'林肯金融, 费城'},{h:'德国',a:'科特迪瓦',d:'2026-06-21',t:'04:00',v:'BMO球场, 多伦多'},{h:'厄瓜多尔',a:'库拉索',d:'2026-06-21',t:'08:00',v:'箭头, 堪萨斯城'},{h:'库拉索',a:'科特迪瓦',d:'2026-06-26',t:'04:00',v:'林肯金融, 费城'},{h:'厄瓜多尔',a:'德国',d:'2026-06-26',t:'04:00',v:'大都会人寿, 东卢瑟福'}]},
+  F:{t:['荷兰','日本','瑞典','突尼斯'],m:[{h:'荷兰',a:'日本',d:'2026-06-15',t:'04:00',v:'AT&T, 阿灵顿'},{h:'瑞典',a:'突尼斯',d:'2026-06-15',t:'10:00',v:'BBVA, 瓜达卢佩'},{h:'荷兰',a:'瑞典',d:'2026-06-21',t:'01:00',v:'NRG, 休斯顿'},{h:'突尼斯',a:'日本',d:'2026-06-21',t:'12:00',v:'BBVA, 瓜达卢佩'},{h:'日本',a:'瑞典',d:'2026-06-26',t:'07:00',v:'AT&T, 阿灵顿'},{h:'突尼斯',a:'荷兰',d:'2026-06-26',t:'07:00',v:'箭头, 堪萨斯城'}]},
+  G:{t:['比利时','埃及','伊朗','新西兰'],m:[{h:'比利时',a:'埃及',d:'2026-06-16',t:'03:00',v:'流明, 西雅图'},{h:'伊朗',a:'新西兰',d:'2026-06-16',t:'09:00',v:'SoFi, 英格尔伍德'},{h:'比利时',a:'伊朗',d:'2026-06-22',t:'03:00',v:'SoFi, 英格尔伍德'},{h:'新西兰',a:'埃及',d:'2026-06-22',t:'09:00',v:'BC Place, 温哥华'},{h:'埃及',a:'伊朗',d:'2026-06-27',t:'11:00',v:'流明, 西雅图'},{h:'新西兰',a:'比利时',d:'2026-06-27',t:'11:00',v:'BC Place, 温哥华'}]},
+  H:{t:['西班牙','佛得角','沙特','乌拉圭'],m:[{h:'西班牙',a:'佛得角',d:'2026-06-16',t:'00:00',v:'梅赛德斯奔驰, 亚特兰大'},{h:'沙特',a:'乌拉圭',d:'2026-06-16',t:'06:00',v:'硬石, 迈阿密'},{h:'西班牙',a:'沙特',d:'2026-06-22',t:'00:00',v:'梅赛德斯奔驰, 亚特兰大'},{h:'乌拉圭',a:'佛得角',d:'2026-06-22',t:'06:00',v:'硬石, 迈阿密'},{h:'佛得角',a:'沙特',d:'2026-06-27',t:'08:00',v:'NRG, 休斯顿'},{h:'乌拉圭',a:'西班牙',d:'2026-06-27',t:'08:00',v:'阿克伦, 萨波潘'}]},
+  I:{t:['法国','塞内加尔','伊拉克','挪威'],m:[{h:'法国',a:'塞内加尔',d:'2026-06-17',t:'03:00',v:'大都会人寿, 东卢瑟福'},{h:'伊拉克',a:'挪威',d:'2026-06-17',t:'06:00',v:'吉列, 福克斯堡'},{h:'法国',a:'伊拉克',d:'2026-06-23',t:'05:00',v:'林肯金融, 费城'},{h:'挪威',a:'塞内加尔',d:'2026-06-23',t:'08:00',v:'大都会人寿, 东卢瑟福'},{h:'挪威',a:'法国',d:'2026-06-27',t:'03:00',v:'吉列, 福克斯堡'},{h:'塞内加尔',a:'伊拉克',d:'2026-06-27',t:'03:00',v:'BMO球场, 多伦多'}]},
+  J:{t:['阿根廷','阿尔及利亚','奥地利','约旦'],m:[{h:'阿根廷',a:'阿尔及利亚',d:'2026-06-17',t:'09:00',v:'箭头, 堪萨斯城'},{h:'奥地利',a:'约旦',d:'2026-06-17',t:'12:00',v:'李维斯, 圣克拉拉'},{h:'阿根廷',a:'奥地利',d:'2026-06-23',t:'01:00',v:'AT&T, 阿灵顿'},{h:'约旦',a:'阿尔及利亚',d:'2026-06-23',t:'11:00',v:'李维斯, 圣克拉拉'},{h:'阿尔及利亚',a:'奥地利',d:'2026-06-28',t:'10:00',v:'箭头, 堪萨斯城'},{h:'约旦',a:'阿根廷',d:'2026-06-28',t:'10:00',v:'AT&T, 阿灵顿'}]},
+  K:{t:['葡萄牙','刚果金','乌兹别克斯坦','哥伦比亚'],m:[{h:'葡萄牙',a:'刚果金',d:'2026-06-18',t:'01:00',v:'NRG, 休斯顿'},{h:'乌兹别克斯坦',a:'哥伦比亚',d:'2026-06-18',t:'10:00',v:'阿兹特克, 墨西哥城'},{h:'葡萄牙',a:'乌兹别克斯坦',d:'2026-06-24',t:'01:00',v:'NRG, 休斯顿'},{h:'哥伦比亚',a:'刚果金',d:'2026-06-24',t:'10:00',v:'阿克伦, 萨波潘'},{h:'哥伦比亚',a:'葡萄牙',d:'2026-06-28',t:'07:30',v:'硬石, 迈阿密'},{h:'刚果金',a:'乌兹别克斯坦',d:'2026-06-28',t:'07:30',v:'梅赛德斯奔驰, 亚特兰大'}]},
+  L:{t:['英格兰','克罗地亚','加纳','巴拿马'],m:[{h:'英格兰',a:'克罗地亚',d:'2026-06-18',t:'04:00',v:'AT&T, 阿灵顿'},{h:'加纳',a:'巴拿马',d:'2026-06-18',t:'07:00',v:'BMO球场, 多伦多'},{h:'英格兰',a:'加纳',d:'2026-06-24',t:'04:00',v:'吉列, 福克斯堡'},{h:'巴拿马',a:'克罗地亚',d:'2026-06-24',t:'07:00',v:'BMO球场, 多伦多'},{h:'巴拿马',a:'英格兰',d:'2026-06-28',t:'05:00',v:'大都会人寿, 东卢瑟福'},{h:'克罗地亚',a:'加纳',d:'2026-06-28',t:'05:00',v:'林肯金融, 费城'}]}
+};
+const 组 = 'ABCDEFGHIJKL';
+
+// ===== 预测引擎 =====
+const 阶 = n=>n<=1?1:n*阶(n-1);
+const 泊 = (l,k)=>Math.exp(-l)*Math.pow(l,k)/阶(k);
+
+function 预测(主,客){
+  const ht=T[主],at=T[客];
+  if(!ht||!at)return{h:33,d:34,a:33,sc:'1-1',l:1.2,m:1.1,tg:2.3};
+  
+  // 基础预期进球 = attack * opponent_defense * base
+  let l = ht.att * at.def * 0.92;
+  let m = at.att * ht.def * 0.92;
+  
+  // 多维修正
+  l *= ht.st * ht.cup * ht.mk;
+  m *= at.st * at.cup * at.mk;
+  
+  // 东道主效应
+  if(东.includes(主)){l*=1.28;m*=0.88}
+  if(东.includes(客)){m*=1.22;l*=0.90}
+  
+  // 加随机扰动(模拟真实比赛的不确定性)
+  const seed = (主.charCodeAt(0)+客.charCodeAt(0)+主.length+客.length)%7;
+  const jitter = 1 + (seed-3)*0.04;
+  l *= jitter; m *= (2-jitter);
+  
+  // 限制极端值
+  l = Math.min(Math.max(l,0.3),5.0);
+  m = Math.min(Math.max(m,0.2),4.0);
+  
+  // 计算概率(允许最多7球)
+  let hW=0,dr=0,aW=0,mp=0,bs='1-1';
+  for(let hg=0;hg<=7;hg++)for(let ag=0;ag<=7;ag++){
+    const p=泊(l,hg)*泊(m,ag);
+    if(hg>ag)hW+=p;else if(hg===ag)dr+=p;else aW+=p;
+    if(p>mp){mp=p;bs=hg+'-'+ag;}
+  }
+  const tot=hW+dr+aW;
+  return{
+    h:Math.round(hW/tot*1000)/10,d:Math.round(dr/tot*1000)/10,a:Math.round(aW/tot*1000)/10,
+    sc:bs,l:Math.round(l*10)/10,m:Math.round(m*10)/10,tg:Math.round((l+m)*10)/10
+  };
+}
+
+function 积分(g){
+  const ts={};g.t.forEach(n=>{ts[n]={n,pt:0,gf:0,ga:0,gd:0,w:0,d:0,l:0,p:0};});
+  g.m.forEach(m=>{
+    if(!m.s)return;
+    const [hs,as]=m.s.split('-').map(Number);
+    const h=ts[m.h],a=ts[m.a];
+    if(!h||!a)return;
+    h.p++;a.p++;h.gf+=hs;h.ga+=as;h.gd=h.gf-h.ga;
+    a.gf+=as;a.ga+=hs;a.gd=a.gf-a.ga;
+    if(hs>as){h.pt+=3;h.w++;a.l++}
+    else if(hs===as){h.pt+=1;a.pt+=1;h.d++;a.d++}
+    else{a.pt+=3;a.w++;h.l++}
+  });
+  return Object.values(ts).sort((a,b)=>b.pt-a.pt||b.gd-a.gd);
+}
+
+// 获取全部比赛(按时间排序)
+function 全部比赛(){
+  const all=[];
+  组.split('').forEach(l=>{
+    G[l].m.forEach(m=>{all.push({...m,g:l});});
+  });
+  return all.sort((a,b)=>a.d.localeCompare(b.d)||a.t.localeCompare(b.t));
+}
+
+// ===== 渲染 =====
+const 周 = ['日','一','二','三','四','五','六'];
+function r(){r赛();r预();r注();r淘();r概();}
+
+function r概(){
+  let total=0,comp=0,tg=0,hw=0;
+  const td=new Date().toISOString().slice(0,10);
+  组.split('').forEach(l=>{G[l].m.forEach(m=>{total++;if(m.s){comp++;const[hs,as]=m.s.split('-').map(Number);tg+=hs+as;if(hs>as)hw++}})});
+  const tc=组.split('').reduce((s,l)=>s+G[l].m.filter(m=>m.d===td).length,0);
+  document.getElementById('sd').innerHTML=
+    `<div class="stat-card"><div class="val">${total}</div><div class="lbl">总场次</div></div>
+     <div class="stat-card"><div class="val">${comp}</div><div class="lbl">已完赛</div></div>
+     <div class="stat-card"><div class="val">${tc}</div><div class="lbl">今日比赛</div></div>
+     <div class="stat-card"><div class="val">${comp?(tg/comp).toFixed(1):'0.0'}</div><div class="lbl">场均进球</div></div>
+     <div class="stat-card"><div class="val">${comp?Math.round(hw/comp*100)+'%':'0%'}</div><div class="lbl">主队胜率</div></div>`;
+}
+
+function r赛(){
+  const tb=document.getElementById('gdt'),c=document.getElementById('gc');
+  tb.innerHTML='';c.innerHTML='';
+  const days=[...new Set(组.split('').flatMap(l=>G[l].m.map(m=>m.d)))].sort();
+  days.forEach((day,i)=>{
+    const b=document.createElement('button');b.className=`tab-btn ${i===0?'act':''}`;
+    const d=new Date(day);const t=new Date().toISOString().slice(0,10);
+    b.textContent=`${day.slice(5)} 周${周[d.getDay()]}${day===t?'·今日':''}`;
+    b.onclick=()=>{c.querySelectorAll('.tab-c').forEach(x=>x.classList.remove('act'));tb.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('act'));document.getElementById('gd_'+day).classList.add('act');b.classList.add('act');};
+    tb.appendChild(b);
+    const dv=document.createElement('div');dv.className=`tab-c ${i===0?'act':''}`;dv.id='gd_'+day;
+    const gw=组.split('').filter(l=>G[l].m.some(m=>m.d===day));
+    gw.forEach(l=>{
+      const gd=G[l],st=积分(gd),dm=gd.m.filter(m=>m.d===day);
+      const cd=document.createElement('div');cd.className='card';cd.style.marginBottom='12px';
+      let h=`<div class="card-header"><h3>${l}组</h3></div>`;
+      if(st.length>=4&&st.some(t=>t.p>0)){
+        h+=`<table class="group-table"><thead><tr><th></th><th>球队</th><th>场</th><th>胜</th><th>平</th><th>负</th><th>进</th><th>失</th><th>净</th><th>分</th></tr></thead><tbody>`;
+        st.forEach((s,i)=>{const pc=i<2?'pos-1':(i===2?'pos-3':'');h+=`<tr><td class="pos ${pc}">${i+1}</td><td class="team-cell">${旗[s.n]||'🏳️'} ${s.n}${东.includes(s.n)?'<span class="host-badge">东</span>':''}</td><td class="pts-cell">${s.p}</td><td class="pts-cell">${s.w}</td><td class="pts-cell">${s.d}</td><td class="pts-cell">${s.l}</td><td class="pts-cell">${s.gf}</td><td class="pts-cell">${s.ga}</td><td class="gd-cell">${s.gd>=0?'+':''}${s.gd}</td><td class="pts">${s.pt}</td></tr>`;});
+        h+='</tbody></table>';
+      }
+      h+='<div style="margin-top:4px">';
+      dm.forEach(m=>{const td=new Date().toISOString().slice(0,10),is=m.d===td,p=预测(m.h,m.a);
+        h+=`<div class="match-card ${is?'match-today':''}"><div class="match-team">${旗[m.h]||'🏳️'} ${m.h}</div><div class="match-score">${m.s?`<span class="st fi">${m.s}</span>`:`<span class="st up">${p.sc}</span>`}</div><div class="match-team">${m.a} ${旗[m.a]||'🏳️'}</div><div class="match-meta">${is?'<span class="live-dot"></span>':''}<span class="match-time">${m.t}</span><span class="match-venue">${m.v}</span><span class="group-label">${l}组</span>${m.s?'<span style="padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;background:var(--green-bg);color:var(--green)">已完赛</span>':`<span class="pred-tag ${p.h>p.a?'hw':(p.a>p.h?'aw':'dr')}">预测 ${p.sc}</span>`}</div></div>`;});
+      h+='</div>';cd.innerHTML+=h;dv.appendChild(cd);
+    });c.appendChild(dv);
+  });
+}
+
+function r预(){
+  const c=document.getElementById('pc');
+  c.innerHTML='';
+  const all=全部比赛().filter(m=>!m.s);
+  
+  let html='';
+  let curDate='';
+  all.forEach(m=>{
+    const p=预测(m.h,m.a);
+    if(m.d!==curDate){
+      curDate=m.d;
+      const d=new Date(m.d);
+      html+=`<div class="daily-header">📅 ${m.d.slice(5)} 周${周[d.getDay()]}</div>`;
+    }
+    html+=`<div class="card" style="margin-bottom:8px"><div class="card-body">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px">
+        <div style="font-weight:600;font-size:14px">${旗[m.h]||''} ${m.h} vs ${m.a} ${旗[m.a]||''}</div>
+        <div style="font-size:12px;color:var(--text3)">${m.t} · ${m.v} · <span class="group-label">${m.g}组</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-bottom:12px">
+        <div style="text-align:right;font-size:14px;font-weight:500">${m.h}</div>
+        <div style="font-size:28px;font-weight:800;color:var(--gold);text-align:center">${p.sc}</div>
+        <div style="font-size:14px;font-weight:500">${m.a}</div>
+      </div>
+      <div style="margin-bottom:6px">
+        <div style="display:flex;gap:6px;height:22px">
+          <div style="flex:${p.h};background:var(--green);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#000;min-width:28px">${p.h}%</div>
+          <div style="flex:${p.d};background:var(--yellow);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#000;min-width:22px">${p.d}%</div>
+          <div style="flex:${p.a};background:var(--red);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#000;min-width:28px">${p.a}%</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:3px"><span>${m.h} 胜</span><span>平局</span><span>${m.a} 胜</span></div>
+      </div>
+      <div style="display:flex;gap:16px;font-size:12px;color:var(--text2);flex-wrap:wrap">
+        <span>⚽ 预期进球: ${p.l} - ${p.m}</span>
+        <span>📊 总进球: ${p.tg}</span>
+        <span>📈 实力差: ${Math.round(T[m.h]?.att*10-T[m.a]?.att*10)}</span>
+      </div>
+    </div></div>`;
+  });
+  c.innerHTML=html;
+}
+
+function r注(){
+  const c=document.getElementById('bc');
+  c.innerHTML='';
+  const all=全部比赛().filter(m=>!m.s);
+  
+  let html='';
+  let curDate='';
+  const 抽水=0.94;
+  
+  all.forEach(m=>{
+    const p=预测(m.h,m.a);
+    if(m.d!==curDate){
+      curDate=m.d;
+      const d=new Date(m.d);
+      const dayMatches=all.filter(x=>x.d===m.d);
+      html+=`<div class="daily-header">📅 ${m.d.slice(5)} 周${周[d.getDay()]} · ${dayMatches.length}场</div>
+      <div class="bet-grid">`;
+    }
+    
+    const maxP=Math.max(p.h,p.d,p.a);
+    let conf='lo',confL='低';
+    if(maxP>60){conf='sg';confL='高'}else if(maxP>50){conf='md';confL='中'}
+    
+    // 根据概率生成多种推荐
+    let recs=[];
+    if(p.h>58)recs.push({t:`${m.h} 胜`,c:'sg'});
+    else if(p.a>58)recs.push({t:`${m.a} 胜`,c:'sg'});
+    else if(p.h>48)recs.push({t:`${m.h} 胜`,c:'md'});
+    else if(p.a>48)recs.push({t:`${m.a} 胜`,c:'md'});
+    
+    if(p.d>32)recs.push({t:'平局',c:'md'});
+    
+    // 总进球推荐
+    if(p.tg>3.2)recs.push({t:`总进球>2.5`,c:'sg'});
+    else if(p.tg<1.8)recs.push({t:`总进球<2.5`,c:'sg'});
+    else if(p.tg>2.5)recs.push({t:`总进球>2.5`,c:'md'});
+    else recs.push({t:`总进球<2.5`,c:'md'});
+    
+    // 比分推荐
+    recs.push({t:`正确比分 ${p.sc}`,c:conf});
+    
+    // 去重取前3
+    recs=recs.slice(0,3);
+    
+    const endBet=curDate!==m.d?false:true;
+    
+    html+=`<div class="bet-card">
+      <h4>${旗[m.h]||''} ${m.h} vs ${m.a} ${旗[m.a]||''}</h4>
+      <div style="font-size:12px;color:var(--text3)">${m.t} · ${m.v} · ${m.g}组</div>
+      <div class="bet-sc">${p.sc} · 总进球 ${p.tg}</div>
+      <div class="recs">${recs.map(r=>`<span class="r ${r.c}">${r.t}</span>`).join('')}</div>
+      <div class="bet-prob">
+        <div class="bet-prob-bar"><div class="b h" style="width:100%"></div><span class="bet-prob-lbl">${m.h} ${p.h}%</span></div>
+        <div class="bet-prob-bar"><div class="b d" style="width:100%"></div><span class="bet-prob-lbl">平 ${p.d}%</span></div>
+        <div class="bet-prob-bar"><div class="b a" style="width:100%"></div><span class="bet-prob-lbl">${m.a} ${p.a}%</span></div>
+      </div>
+      <div class="bet-odds">模拟赔率: ${(抽水*100/p.h).toFixed(2)} / ${(抽水*100/p.d).toFixed(2)} / ${(抽水*100/p.a).toFixed(2)}</div>
+    </div>`;
+    
+    // Check next match - if different day or last match, close div
+    const idx=all.indexOf(m);
+    const next=all[idx+1];
+    if(!next||next.d!==m.d)html+='</div>';
+  });
+  c.innerHTML=html;
+}
+
+function r淘(){
+  const c=document.getElementById('brc');
+  const gr={};
+  组.split('').forEach(l=>{const st=积分(G[l]);
+    if(st.length>=4&&st.some(t=>t.p>0)){gr[l]={w:st[0].n,r:st[1].n};}
+    else{const s=[...G[l].t].sort((a,b)=>(T[b]?.att||0)-(T[a]?.att||0));gr[l]={w:s[0],r:s[1]};}});
+  function dn(s){const g=s.match(/([A-L])组/);if(!g)return s;
+    if(s.includes('第1'))return(旗[gr[g[1]]?.w]||'')+' '+gr[g[1]]?.w;
+    if(s.includes('第2'))return(旗[gr[g[1]]?.r]||'')+' '+gr[g[1]]?.r;return s;}
+  const r32=['A组第2 vs B组第2','E组第1 vs 第3','F组第1 vs C组第2','C组第1 vs F组第2',
+    'I组第1 vs 第3','E组第2 vs I组第2','A组第1 vs 第3','L组第1 vs 第3',
+    'D组第1 vs 第3','G组第1 vs 第3','K组第2 vs L组第2','H组第1 vs J组第2',
+    'B组第1 vs 第3','J组第1 vs H组第2','K组第1 vs 第3','D组第2 vs G组第2'];
+  let h='<div class="bracket-round"><div class="bracket-round-label">32强<br><small>6.28-7.3</small></div>';
+  r32.forEach(m=>{const p=m.split(' vs ');h+=`<div class="bracket-game"><div class="bt">${dn(p[0])}</div><div class="bt lo">${dn(p[1])}</div></div>`;});
+  h+='</div><div class="bracket-round"><div class="bracket-round-label">16强<br><small>7.4-7.7</small></div>';
+  for(let i=0;i<8;i++)h+=`<div class="bracket-game"><div class="bt" style="padding:6px 0;text-align:center;color:var(--text3);font-size:10px">待定</div></div>`;
+  h+='</div><div class="bracket-round"><div class="bracket-round-label">8强<br><small>7.9-7.11</small></div>';
+  for(let i=0;i<4;i++)h+=`<div class="bracket-game"><div class="bt" style="padding:10px 0;text-align:center;color:var(--text3)">待定</div></div>`;
+  h+='</div><div class="bracket-round"><div class="bracket-round-label">4强<br><small>7.14-7.15</small></div>';
+  for(let i=0;i<2;i++)h+=`<div class="bracket-game"><div class="bt" style="padding:12px 0;text-align:center;color:var(--text3)">待定</div></div>`;
+  h+='</div><div class="bracket-round"><div class="bracket-round-label">决赛<br><small>7.19</small></div>';
+  h+=`<div class="bracket-game"><div class="bt" style="padding:14px 0;text-align:center;font-weight:700;font-size:13px;background:var(--gold);color:#000;border-radius:6px">🏆 冠军待定</div></div></div>`;
+  c.innerHTML=h;
+}
+
+function st(tab){
+  document.querySelectorAll('.tab-c').forEach(t=>t.classList.remove('act'));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('act'));
+  const el=document.getElementById('tab-'+tab);if(el)el.classList.add('act');
+  document.querySelectorAll('nav a').forEach(a=>{
+    const map={groups:'赛程',predictions:'预测',bets:'下注',bracket:'淘汰'};
+    if(a.textContent.includes(map[tab]||''))a.classList.add('act');
+  });
+}
+r();
+</script>
+</body>
+</html>
