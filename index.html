@@ -321,13 +321,16 @@ function r注(){
     
     // 推荐理由
     const ht=T[m.h],at=T[m.a];
-    const reason = p.h > p.a ? 
-      `${m.h} 进攻${ht.att.toFixed(1)} vs ${m.a} 防守${at.def.toFixed(1)}，实力差距明显` :
-      (p.a > p.h ?
-        `${m.a} 实力占优，进攻${at.att.toFixed(1)} vs ${m.h} 防守${ht.def.toFixed(1)}` :
-        '双方实力接近，平局概率不容忽视');
-    
-    html+=`<div class="bc"><h4>${旗[m.h]||''} ${m.h} vs ${m.a} ${旗[m.a]||''}</h4>
+    const drP=Math.round(p.d),hW=Math.round(p.h),aW=Math.round(p.a);
+    const isHost = 东.includes(m.h)||东.includes(m.a);
+    const hostNote = isHost ? '(含东道主因子)' : '';
+            let reason;
+    if(hW>60)reason=`${m.h}胜率${hW}%远高于平局${drP}%，实力压制。推荐${m.h}胜 ${hostNote}`;
+    else if(aW>60)reason=`${m.a}胜率${aW}%远高于平局${drP}%，实力压制。推荐${m.a}胜`;
+    else if(drP>22)reason=`双方实力接近——${m.h}${hW}%/平${drP}%/${m.a}${aW}%。建议防平，预测${p.sc}`;
+    else if(hW>48)reason=`${m.h}稍占优(${hW}%)，平率${drP}%。推荐${m.h}胜，可防平`;
+    else if(aW>48)reason=`${m.a}稍占优(${aW}%)，平率${drP}%。推荐${m.a}胜，可防平`;
+    else reason=`势均力敌——${m.h}${hW}%/平${drP}%/${m.a}${aW}%。建议${hW>aW?m.h:m.a}不败`;html+=`<div class="bc"><h4>${旗[m.h]||''} ${m.h} vs ${m.a} ${旗[m.a]||''}</h4>
       <div style="font-size:12px;color:var(--text3)">${m.t} · ${m.v} · ${m.g}组</div>
       <div class="bs">${p.sc} · 总进球 ${tg_int}球</div>
       <div class="tr">
